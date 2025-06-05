@@ -1,0 +1,42 @@
+server:
+  port: 3000
+
+spring:
+  application:
+    name: didim-interview-analysis
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    database-platform: org.hibernate.dialect.H2Dialect
+  
+  h2:
+    console:
+      enabled: true
+
+aws:
+  region: ap-northeast-2
+  credentials:
+    access-key: ${AWS_ACCESS_KEY_ID:}
+    secret-key: ${AWS_SECRET_ACCESS_KEY:}
+  s3:
+    recording-bucket: flight-attendant-recordings
+    profile-bucket: flight-attendant-profiles
+    analysis-bucket: crewbe-analysis-results
+
+logging:
+  level:
+    com.didim: DEBUG
+    software.amazon.awssdk: INFO
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n"
+  file:
+    name: logs/didim-interview-analysis.log
+    max-size: 10MB
+    max-history: 10 
