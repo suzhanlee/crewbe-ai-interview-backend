@@ -63,4 +63,4 @@ src/main/resources/application-prod.yml
 
 # Temporary files
 *.tmp
-*.temp 
+*.temp /gradle-8.3/
