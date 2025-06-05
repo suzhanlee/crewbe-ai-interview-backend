@@ -23,6 +23,7 @@ dependencies {
     
     // AWS SDK v2
     implementation("software.amazon.awssdk:s3:2.20.143")
+    implementation("software.amazon.awssdk:s3-presigner:2.20.143")
     implementation("software.amazon.awssdk:transcribe:2.20.143")
     implementation("software.amazon.awssdk:rekognition:2.20.143")
     implementation("software.amazon.awssdk:auth:2.20.143")
