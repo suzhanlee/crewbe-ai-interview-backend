@@ -15,18 +15,21 @@ repositories {
 }
 
 dependencies {
+    // AWS SDK BOM for version management
+    implementation(platform("software.amazon.awssdk:bom:2.20.143"))
+    
     // Spring Boot Starters
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-logging")
     
-    // AWS SDK v2
-    implementation("software.amazon.awssdk:s3:2.20.143")
-    implementation("software.amazon.awssdk:s3-presigner:2.20.143")
-    implementation("software.amazon.awssdk:transcribe:2.20.143")
-    implementation("software.amazon.awssdk:rekognition:2.20.143")
-    implementation("software.amazon.awssdk:auth:2.20.143")
+    // AWS SDK v2 (versions managed by BOM)
+    implementation("software.amazon.awssdk:s3")
+    // implementation("software.amazon.awssdk:s3-presigner") // 일시적으로 제거
+    implementation("software.amazon.awssdk:transcribe")
+    implementation("software.amazon.awssdk:rekognition")
+    implementation("software.amazon.awssdk:auth")
     
     // Kotlin
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")

@@ -73,7 +73,7 @@ class AnalysisController(
         } catch (e: Exception) {
             logger.error("분석 상태 확인 실패", e)
             ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(mapOf("success" to false, "error" to e.message))
+                .body(mapOf("success" to false, "error" to (e.message ?: "Unknown error")))
         }
     }
 } 

@@ -97,7 +97,7 @@ class UploadController(
         } catch (e: Exception) {
             logger.error("파일 업로드 실패", e)
             ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(UploadResponse(success = false, error = e.message))
+                .body(UploadResponse(success = false, error = e.message ?: "Unknown error"))
         }
     }
     
@@ -107,10 +107,10 @@ class UploadController(
             val exists = s3Service.checkFileExists(s3Key)
             val record = uploadService.findByS3Key(s3Key)
             
-            val response = mapOf(
+            val response: Map<String, Any> = mapOf(
                 "success" to true,
                 "exists" to exists,
-                "record" to record,
+                "record" to (record ?: "null"),
                 "s3Key" to s3Key
             )
             
@@ -119,7 +119,7 @@ class UploadController(
         } catch (e: Exception) {
             logger.error("파일 상태 확인 실패", e)
             ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(mapOf("success" to false, "error" to e.message))
+                .body(mapOf("success" to false, "error" to (e.message ?: "Unknown error")))
         }
     }
 } 

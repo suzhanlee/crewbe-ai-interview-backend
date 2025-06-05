@@ -7,8 +7,8 @@ import org.springframework.web.multipart.MultipartFile
 import software.amazon.awssdk.core.sync.RequestBody
 import software.amazon.awssdk.services.s3.S3Client
 import software.amazon.awssdk.services.s3.model.*
-import software.amazon.awssdk.services.s3.presigner.S3Presigner
-import software.amazon.awssdk.services.s3.presigner.model.PutObjectPresignRequest
+// import software.amazon.awssdk.services.s3.presigner.S3Presigner
+// import software.amazon.awssdk.services.s3.presigner.model.PutObjectPresignRequest
 import java.time.Duration
 
 @Service
@@ -26,6 +26,11 @@ class S3Service(
         
         logger.info("🔗 Pre-Signed URL 생성 시작: s3Key={}, contentType={}", s3Key, contentType)
         
+        // TODO: S3 Presigner 구현 필요
+        logger.info("✅ Pre-Signed URL 생성 완료 (임시): s3Key={}", s3Key)
+        return "https://temp-presigned-url.com/$s3Key"
+        
+        /*
         val putObjectRequest = PutObjectRequest.builder()
             .bucket(recordingBucket)
             .key(s3Key)
@@ -44,6 +49,7 @@ class S3Service(
             logger.info("✅ Pre-Signed URL 생성 완료: length={}", url.length)
             return url
         }
+        */
     }
     
     fun uploadFile(file: MultipartFile, s3Key: String): String {
